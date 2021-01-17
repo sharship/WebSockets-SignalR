@@ -41,3 +41,33 @@ Fig. 2 WebSockets Establishment
 ## WebSocket App Architecture 
 ![WebSocket App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/WebSocket%20App%20Architecture.png "WebSocket App Architecture")  
 Fig. 3 WebSocket App Architecture  
+
+The custom .Net classes to build: 
+- WebSocketServerMiddleware\(pipline\); 
+- WebSocketServerMiddleExtensions\(for optimization\); 
+- WebSocketServerConnectionManager\(for routing?\); 
+
+### Overview of building process 
+#### Phase 1: Get connected 
+- Build both client and server components; 
+- Establish a WebSocket connection; 
+- Asynchronous programming in .Net; 
+- Reqest pipline & Request delegates; 
+
+#### Phase 2: Send messages 
+Send message from client to server, i.e. http/javascript to .Net. 
+
+#### Phase 3: Upgrade middleware 
+- Build custome middle to handle WS connection; 
+- Split out Request Delegate into separate class; 
+
+#### Phase 4: Add a manager 
+- Manage multiple WS connections; 
+- Send messages between clients, within multiple WS connections, e.g. group chat; 
+- Introduce "Connection ID" concept; 
+
+#### Phase 5: Add message router 
+By adding a router, we could: 
+- send message to targeted individual clients; 
+- or broadcast to all active connections; 
+
