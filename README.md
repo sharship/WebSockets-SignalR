@@ -1,5 +1,8 @@
 ## 1. HTTP, XMLHttpRequest & WebSockets 
 ### HTTP 
+![HTTP request-response cycle](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/Http.PNG "HTTP request-response cycle")  
+Fig. 1 HTTP request-response cycle  
+
 - Request - Response Cycle; 
 - Synchronous; 
 - Stateless; 
