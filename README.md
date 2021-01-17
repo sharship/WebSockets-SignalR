@@ -8,6 +8,7 @@ Fig. 1 HTTP request-response cycle
 - Stateless; 
 
 ### XMLHttpRequest\(XHR\) 
+Need to "poll for updates" via Request/Response cycle \(keep asking Server what to update\). 
 - Partial UI updates; 
 - Asynchronous; 
 - Request - Response based; 
@@ -18,4 +19,11 @@ Fig. 1 HTTP request-response cycle
 - Immediately send response back to client; 
 - Rinse & Repeat; 
 
+### WebSockets 
+Establish and keep a __persisted "full-duplex"__ connection. 
+![WebSockets Establishment](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/WebSockets.PNG "WebSockets Establishment")  
+Fig. 2 WebSockets Establishment  
+
+- Start with HTTP request to establish a _persistent_ WebSocket connection; 
+- Bi-directional; 
 
