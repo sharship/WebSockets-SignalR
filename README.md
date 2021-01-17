@@ -27,3 +27,14 @@ Fig. 2 WebSockets Establishment
 - Start with HTTP request to establish a _persistent_ WebSocket connection; 
 - Bi-directional; 
 
+## 2. WebSocket API  
+### Events 
+- __open__: Fired when a WebSocket connection is opened; 
+- __message__: Fired when data is received through a WebSocket; 
+- __close__: Fired when a WebSocket connection is closed; 
+- __error__: Fired when a WebSocket connection is closed due to an error; 
+
+### Methods 
+- __send\(\)__: Enqueues data to be transmitted; 
+- __close\(\)__: Close teh connection; 
+
