@@ -39,5 +39,5 @@ Fig. 2 WebSockets Establishment
 - __close\(\)__: Close teh connection; 
 
 ## WebSocket App Architecture 
-![WebSocket App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/WebSocket App Architecture.png "WebSocket App Architecture")  
+![WebSocket App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/WebSocket%20App%20Architecture.png "WebSocket App Architecture")  
 Fig. 3 WebSocket App Architecture  
