@@ -8,6 +8,7 @@ var commsLog = document.getElementById("commsLog");
 var closeButton = document.getElementById("closeButton");
 var recipients = document.getElementById("recipients");
 var connID = document.getElementById("connIDLabel");
+
 connectionUrl.value = "ws://localhost:5000";
 
 connectButton.onclick = function () {

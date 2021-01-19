@@ -73,4 +73,26 @@ By adding a router, we could:
 
 ### Phase 1: 
 On client side, initiate a WebSocket instance:  
-`   socket = new WebSocket(connectionUrl.value);`
+`   socket = new WebSocket(connectionUrl.value);` 
+`   socket.onopen = function (event) {}` 
+`   socket.onmessage = function (event) {}`  
+`   socket.onclose = function (event) {}`  
+`   socket.onerror = function (event) {}`  
+  
+`   connectionUrl.value = "ws://localhost:5000";`  
+
+On server side, add middleware to _Startup.Configure()_ method:  
+`   app.UseWebSockets();`  
+`   WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();`  
+
+
+#### Middleware
+Middlewares are different components that are added to _Request Pipline_, to handle requests.  
+
+![Middleware request delegate pipline](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/request-delegate-pipeline.png "Middleware request delegate pipline")  
+Fig. 4 Middleware request delegate pipline  
+
+_Request Delegates_ are used to build pipline, using one of following extension methods:  
+- _Run_: used at the **end** of pipline to terminate request handling;  
+- _Map_: used to **branch** the pipline;  
+- _Use_: used to either **shortcut** (by not calling _next_ request delegate), or **chain up** pipline (by calling _next_ request delegate);  
