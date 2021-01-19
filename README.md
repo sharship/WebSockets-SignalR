@@ -55,7 +55,7 @@ The custom .Net classes to build:
 - Reqest pipline & Request delegates; 
 
 #### Phase 2: Send messages 
-Send message from client to server, i.e. http/javascript to .Net. 
+Send message from client to server, i.e. HTML/JavaScript to .Net. 
 
 #### Phase 3: Upgrade middleware 
 - Build custome middle to handle WS connection; 
@@ -71,3 +71,6 @@ By adding a router, we could:
 - send message to targeted individual clients; 
 - or broadcast to all active connections; 
 
+### Phase 1: 
+On client side, initiate a WebSocket instance: 
+`socket = new WebSocket(connectionUrl.value);`
