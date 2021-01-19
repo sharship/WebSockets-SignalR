@@ -72,5 +72,5 @@ By adding a router, we could:
 - or broadcast to all active connections; 
 
 ### Phase 1: 
-On client side, initiate a WebSocket instance: 
-`socket = new WebSocket(connectionUrl.value);`
+On client side, initiate a WebSocket instance:  
+`   socket = new WebSocket(connectionUrl.value);`
