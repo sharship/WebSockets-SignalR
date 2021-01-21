@@ -132,4 +132,6 @@ Fig. 6 Middleware request delegate pipline with WebSocket
 
 ### Phase 3: Upgrade Our Middleware
 - Move the Request Delegate in _Startup.Configure\(\)_ to a separate "Middleware" class;  
+- Expose customized Middleware class via _IApplicationBuilder_;  
+
 
