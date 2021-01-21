@@ -36,6 +36,25 @@ connectButton.onclick = function () {
 
 };
 
+closeButton.onclick = function () {
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
+      alert("socket not connected");
+    }
+    socket.close(1000, "Closing from client");
+};
+
+sendButton.onclick = function () {
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
+        alert("socket not connected");
+    }
+    var data = sendMessage.value;
+    socket.send(data); // socket sends message
+    commsLog.innerHTML += '<tr>' +
+        '<td class="commslog-client">Client</td>' +
+        '<td class="commslog-server">Server</td>' +
+        '<td class="commslog-data">' + htmlEscape(data) + '</td></tr>';
+};
+
 function htmlEscape(str) {
     return str.toString()
         .replace(/&/g, '&amp;')

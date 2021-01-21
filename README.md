@@ -105,7 +105,7 @@ Fig. 5 Task asynchronous programming
 3. When the result of _getStringTask_ is needed, but may not have been returned, a _await_ statement is put in front of it to "await" Task\<string\> result, and return control back to method caller.  
 
 
-### Phase 1: 
+### Phase 1: Get connected 
 On client side, initiate a WebSocket instance:  
 `   socket = new WebSocket(connectionUrl.value);` 
 `   socket.onopen = function (event) {}` 
@@ -121,4 +121,15 @@ On server side, add middleware to _Startup.Configure()_ method:
 
 ![Middleware request delegate pipline with WebSocket](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/websocket-pipline.jpg "Middleware request delegate pipline with WebSocket")  
 Fig. 6 Middleware request delegate pipline with WebSocket  
+
+### Phase 2: Send messages 
+#### Client: 
+- Send a message to WebSocket \(Client to Server\);  
+
+#### Server: 
+- Add an _Asynchronous_ method to receive message, to receive _events_ on our WebSocket;  
+- Call this new Async method from within "WebSocket Request Delegate";  
+
+### Phase 3: Upgrade Our Middleware
+- Move the Request Delegate in _Startup.Configure\(\)_ to a separate "Middleware" class;  
 
