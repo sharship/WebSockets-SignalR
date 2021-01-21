@@ -110,6 +110,7 @@ Middleware is generally
 - encapsulated in a _middleware class_;  
 - and then exposed with an _extension method_;  
 
+##### Middleware Class  
 The middleware class **must** include:  
 - A public constructor with a parameter of type _RequestDelegate_;  
 - A public method named __Invoke__ or __InvokeAsync__, this method **must**:  
@@ -120,7 +121,10 @@ Additional parameters for constructor and/or Invoke/InvokeAsync are populated by
 ![Build custom middleware](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/custom-middleware.png "Build custom middleware")  
 Fig. 6 Build custom middleware  
 
-
+##### Middleware Extension Method  
+The extension method _exposes_ the middleware through _IApplicationBuilder_:  
+![Expose custom middleware through IApplicationBuilder extension method.](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/expose-middleware.png "Expose custom middleware through IApplicationBuilder extension method.")  
+Fig. 7 Expose custom middleware through IApplicationBuilder extension method.  
 
 
 ### Phase 1: Get connected 
@@ -138,7 +142,7 @@ On server side, add middleware to _Startup.Configure()_ method:
 `   WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();`  
 
 ![Middleware request delegate pipline with WebSocket](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/websocket-pipline.jpg "Middleware request delegate pipline with WebSocket")  
-Fig. 7 Middleware request delegate pipline with WebSocket  
+Fig. 8 Middleware request delegate pipline with WebSocket  
 
 ### Phase 2: Send messages 
 #### Client: 
