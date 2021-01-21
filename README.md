@@ -105,6 +105,46 @@ Fig. 5 Task asynchronous programming
 3. When the result of _getStringTask_ is needed, but may not have been returned, a _await_ statement is put in front of it to "await" Task\<string\> result, and return control back to method caller.  
 
 
+#### Custom ASP.NET Core Middleware
+Middleware is generally  
+- encapsulated in a _middleware class_;  
+- and then exposed with an _extension method_;  
+
+The middleware class **must** include:  
+- A public constructor with a parameter of type _RequestDelegate_;  
+- A public method named __Invoke__ or __InvokeAsync__, this method **must**:  
+1. Return a **Task**;  
+2. Accept a first parameter of type _HttpContext__;  
+
+Additional parameters for constructor and/or Invoke/InvokeAsync are populated by _Dependency Injection\(DI\)_.
+
+`namespace Middlewares`  
+`{`  
+`    public class MiddlewareClass`  
+`    {`  
+`        private readonly RequestDelegate _next;`  
+``  
+`        public MiddlewareClass(RequestDelegate next)`  
+`        {`  
+`            _next = next;`  
+`        }`  
+``  
+`        public async Task InvokeAsync(HttpContext context)`  
+`        {`  
+`            var thing = await context.DoSomethingAsync();`  
+`            if (thing)`  
+`            {`  
+`                Do this middleware is for...`  
+`            }`  
+``  
+`            // Call the next delegate/middleware in the pipeline`  
+`            await _next(context);`  
+`        }`  
+`    }`  
+`}`  
+
+
+
 ### Phase 1: Get connected 
 On client side, initiate a WebSocket instance:  
 `   socket = new WebSocket(connectionUrl.value);` 
