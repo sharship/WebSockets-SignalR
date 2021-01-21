@@ -71,6 +71,40 @@ By adding a router, we could:
 - send message to targeted individual clients; 
 - or broadcast to all active connections; 
 
+### .NET Middleware & Asynchronous programming
+
+#### Middleware
+Middlewares are different components that are added to _Request Pipline_, to handle requests.  
+
+![Middleware request delegate pipline](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/request-delegate-pipeline.png "Middleware request delegate pipline")  
+Fig. 4 Middleware request delegate pipline  
+
+_Request Delegates_ are used to build pipline, using one of following extension methods:  
+- _Run_: used at the **end** of pipline to terminate request handling;  
+- _Map_: used to **branch** the pipline;  
+- _Use_: used to either **shortcut** (by not calling _next_ request delegate), or **chain up** next Request Delegate in pipline (by calling _next_ request delegate);  
+
+#### Asynchronous programming
+Asynchronous methods:  
+- use _async_ modifier;  
+- return a _Task/Task<T>_ \(with optional type\);  
+- usually have _"Async"_ as name suffix as convention;  
+
+- Returned tasks represent ongoing work, and will eventually return with required result or exception;
+
+Await  
+- _Await_ statement can be used in Async methods to designate "suspension point", i.e. it can't continue past this point until the awaited process is complete;
+- The "awaited" method itself must also be asynchronous;
+- While "awaiting", control is returned back to the caller of the Async method;
+
+![Task asynchronous programming](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/async-program.png "Task asynchronous programming")  
+Fig. 5 Task asynchronous programming  
+
+1. As shown in Fig. 5, _GetStringAsync\(url\)_ returns a Task, and it is assigned to a variable _getStringTask_;  
+2. Independent work can keep going while async _getStringTask_ waiting its Task\<string\> result;  
+3. When the result of _getStringTask_ is needed, but may not have been returned, a _await_ statement is put in front of it to "await" Task\<string\> result, and return control back to method caller.  
+
+
 ### Phase 1: 
 On client side, initiate a WebSocket instance:  
 `   socket = new WebSocket(connectionUrl.value);` 
@@ -85,14 +119,6 @@ On server side, add middleware to _Startup.Configure()_ method:
 `   app.UseWebSockets();`  
 `   WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();`  
 
+![Middleware request delegate pipline with WebSocket](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/websocket-pipline.jpg "Middleware request delegate pipline with WebSocket")  
+Fig. 6 Middleware request delegate pipline with WebSocket  
 
-#### Middleware
-Middlewares are different components that are added to _Request Pipline_, to handle requests.  
-
-![Middleware request delegate pipline](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/request-delegate-pipeline.png "Middleware request delegate pipline")  
-Fig. 4 Middleware request delegate pipline  
-
-_Request Delegates_ are used to build pipline, using one of following extension methods:  
-- _Run_: used at the **end** of pipline to terminate request handling;  
-- _Map_: used to **branch** the pipline;  
-- _Use_: used to either **shortcut** (by not calling _next_ request delegate), or **chain up** pipline (by calling _next_ request delegate);  
