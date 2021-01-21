@@ -116,32 +116,10 @@ The middleware class **must** include:
 1. Return a **Task**;  
 2. Accept a first parameter of type _HttpContext__;  
 
-Additional parameters for constructor and/or Invoke/InvokeAsync are populated by _Dependency Injection\(DI\)_.
+Additional parameters for constructor and/or Invoke/InvokeAsync are populated by _Dependency Injection\(DI\)_.  
+![Build custom middleware](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/custom-middleware.png "Build custom middleware")  
+Fig. 6 Build custom middleware  
 
-`namespace Middlewares`  
-`{`  
-`    public class MiddlewareClass`  
-`    {`  
-`        private readonly RequestDelegate _next;`  
-``  
-`        public MiddlewareClass(RequestDelegate next)`  
-`        {`  
-`            _next = next;`  
-`        }`  
-``  
-`        public async Task InvokeAsync(HttpContext context)`  
-`        {`  
-`            var thing = await context.DoSomethingAsync();`  
-`            if (thing)`  
-`            {`  
-`                Do this middleware is for...`  
-`            }`  
-``  
-`            // Call the next delegate/middleware in the pipeline`  
-`            await _next(context);`  
-`        }`  
-`    }`  
-`}`  
 
 
 
@@ -160,7 +138,7 @@ On server side, add middleware to _Startup.Configure()_ method:
 `   WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();`  
 
 ![Middleware request delegate pipline with WebSocket](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/websocket-pipline.jpg "Middleware request delegate pipline with WebSocket")  
-Fig. 6 Middleware request delegate pipline with WebSocket  
+Fig. 7 Middleware request delegate pipline with WebSocket  
 
 ### Phase 2: Send messages 
 #### Client: 
