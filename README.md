@@ -167,5 +167,16 @@ Fig. 8 Middleware request delegate pipline with WebSocket
 #### Client  
 - Process and display its own unique connection ID generated and sent back by server;  
 
+### Phase 5: Add Message Router
+#### Client
+- Build a JSON-based format  
 
+#### Server
+- Introduce a _routing_ capability that can:
+1. Route message to a specified client;  
+2. Broadcast messages to all clients;  
 
+- Close specific WebSocket connection if we receive a close event from the specific client  
+
+![Routing rules](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/routing.jpg "Routing rules")  
+Fig. 9 Routing rules  
