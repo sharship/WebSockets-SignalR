@@ -1,12 +1,9 @@
-using System.Threading;
 using System;
-using System.Net.WebSockets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Threading.Tasks;
 using WebSocketServer.Middleware;
 
 namespace WebSocketServer
@@ -15,6 +12,7 @@ namespace WebSocketServer
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddWebSocketServerConnectionManager();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

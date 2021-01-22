@@ -154,6 +154,18 @@ Fig. 8 Middleware request delegate pipline with WebSocket
 
 ### Phase 3: Upgrade Our Middleware
 - Move the Request Delegate in _Startup.Configure\(\)_ to a separate "Middleware" class;  
-- Expose customized Middleware class via _IApplicationBuilder_;  
+- Expose customized Middleware class via _IApplicationBuilder_ extension method;  
+
+### Phase 4: Add a manager  
+#### Server
+1.  Create a _WebSocketServerConnectionManager_ class to:  
+- Generate unique WebSocket connection ID;  
+- Allow us to track connections with a view of routing;  
+
+2. Send back the unique WebSocket connection ID to client up successful connection request;  
+
+#### Client  
+- Process and display its own unique connection ID generated and sent back by server;  
+
 
 

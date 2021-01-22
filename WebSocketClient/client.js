@@ -32,6 +32,8 @@ connectButton.onclick = function () {
             '<td class="commslog-server">Server</td>' +
             '<td class="commslog-client">Client</td>' +
             '<td class="commslog-data">' + htmlEscape(event.data) + '</td></tr>';
+        
+        isConnID(event.data);
     };
 
 };
@@ -107,5 +109,11 @@ function updateState() {
                 disable();
                 break;
         }
+    }
+}
+
+function isConnID(str) {
+    if (str.substring(0, 7) == "ConnID:") {
+        connID.innerHTML = "ConnID: " + str.substring(8, 45);
     }
 }

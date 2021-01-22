@@ -10,9 +10,14 @@ namespace WebSocketServer.Middleware
     public class WebSocketServerMiddleware
     {
         private readonly RequestDelegate _next;  // a private request delegate instance
-        public WebSocketServerMiddleware(RequestDelegate next)
+
+        // private readonly WebSocketServerConnectionManager _manager = new WebSocketServerConnectionManager();
+        private readonly WebSocketServerConnectionManager _manager;
+
+        public WebSocketServerMiddleware(RequestDelegate next, WebSocketServerConnectionManager manager)
         {
             _next = next;
+            _manager = manager;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -21,7 +26,9 @@ namespace WebSocketServer.Middleware
             {
                 WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
 
-                Console.WriteLine("WebSocket connected.");
+                var connID = _manager.AddSocket(webSocket);
+                
+                await SendConnIDAsync(webSocket, connID);
 
                 await ReceiveMessage(webSocket, async (result, buffer) =>
                 {
@@ -55,6 +62,12 @@ namespace WebSocketServer.Middleware
 
                 handleMessage(result, buffer); // Once "awaited" result is received from socket's async method, we use Action Delegate parameter (handleMessage) to pass back the result and message (stored in the buffer);  
             }
+        }
+
+        private async Task SendConnIDAsync(WebSocket socket, string connID)
+        {
+            var buffer = Encoding.UTF8.GetBytes("ConnID: "+ connID);
+            await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
 
