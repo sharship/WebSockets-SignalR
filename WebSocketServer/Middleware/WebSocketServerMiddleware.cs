@@ -26,10 +26,10 @@ namespace WebSocketServer.Middleware
         {
             if (context.WebSockets.IsWebSocketRequest)
             {
-                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();  // a WebSocket connection is built
 
                 var connID = _manager.AddSocket(webSocket);
-                
+
                 await SendConnIDAsync(webSocket, connID);
 
                 await ReceiveMessage(webSocket, async (result, buffer) =>
@@ -64,10 +64,10 @@ namespace WebSocketServer.Middleware
 
         private async Task ReceiveMessage(WebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage) // 2nd parameter handleMessage is an Action Delegate which we use to pass back "result" and "message"
         {
-            var buffer = new byte[1024*4];
+            var buffer = new byte[1024 * 4];
             while (socket.State == WebSocketState.Open)
             {
-                var result = await socket.ReceiveAsync(buffer: new ArraySegment<byte>(buffer), 
+                var result = await socket.ReceiveAsync(buffer: new ArraySegment<byte>(buffer),
                                                        cancellationToken: CancellationToken.None); // "await" the result from the socket
 
                 handleMessage(result, buffer); // Once "awaited" result is received from socket's async method, we use Action Delegate parameter (handleMessage) to pass back the result and message (stored in the buffer);  
@@ -76,7 +76,7 @@ namespace WebSocketServer.Middleware
 
         private async Task SendConnIDAsync(WebSocket socket, string connID)
         {
-            var buffer = Encoding.UTF8.GetBytes("ConnID: "+ connID);
+            var buffer = Encoding.UTF8.GetBytes("ConnID: " + connID);
             await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
@@ -87,7 +87,7 @@ namespace WebSocketServer.Middleware
             if (Guid.TryParse(routeObj.To.ToString(), out Guid guidOutput))
             {
                 Console.WriteLine("Targeted");
-                var socket = _manager.GetAllSockets().FirstOrDefault(s => s.Key == routeObj.To.ToString());
+                var socket = _manager.GetAllSockets().FirstOrDefault(s => s.Key == routeObj.To.ToString()); // find targete To connID
                 if (socket.Value != null)
                 {
                     if (socket.Value.State == WebSocketState.Open)

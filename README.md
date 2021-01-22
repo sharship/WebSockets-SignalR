@@ -180,3 +180,9 @@ Fig. 8 Middleware request delegate pipline with WebSocket
 
 ![Routing rules](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/routing.jpg "Routing rules")  
 Fig. 9 Routing rules  
+
+
+## 3. SignalR  
+SignalR uses WebSockets, and is an open source "wrapper" framework around WebSockets \(and other protocols/approaches\).  
+
+![WebSocket App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/WebSocket%20App%20Architecture.png "WebSocket App Architecture") ![SignalR App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/SignalR.jpg "SignalR App Architecture")  
