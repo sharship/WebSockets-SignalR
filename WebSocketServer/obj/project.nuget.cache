@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EC5sjxXbywwOw9fHBLjTfSw98sF6C9aciHX2udY9Kwl4kNyAgszuNrjte2qQKkP48Y76f285chYSPpdILAvjbQ==",
+  "dgSpecHash": "XIY9mDijdp6Ag15gadZ678Mazvgx5DEQHhBXKpJt+qZhQfJ9rqUUj3utZTBlsZdm+JX6P0XXrBNXj8fv5oHAsA==",
   "success": true,
   "projectFilePath": "D:\\self training\\WebSockets vs SignalR\\WebSocketServer\\WebSocketServer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

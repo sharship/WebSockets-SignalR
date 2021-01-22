@@ -21,3 +21,5 @@ D:\self training\WebSockets vs SignalR\WebSocketServer\obj\Debug\net5.0\WebSocke
 D:\self training\WebSockets vs SignalR\WebSocketServer\obj\Debug\net5.0\ref\WebSocketServer.dll
 D:\self training\WebSockets vs SignalR\WebSocketServer\obj\Debug\net5.0\WebSocketServer.pdb
 D:\self training\WebSockets vs SignalR\WebSocketServer\obj\Debug\net5.0\WebSocketServer.genruntimeconfig.cache
+D:\self training\WebSockets vs SignalR\WebSocketServer\obj\Debug\net5.0\WebSocketServer.csproj.CopyComplete
+D:\self training\WebSockets vs SignalR\WebSocketServer\bin\Debug\net5.0\Newtonsoft.Json.dll
