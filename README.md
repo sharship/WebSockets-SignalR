@@ -186,3 +186,24 @@ Fig. 9 Routing rules
 SignalR uses WebSockets, and is an open source "wrapper" framework around WebSockets \(and other protocols/approaches\).  
 
 ![WebSocket App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/WebSocket%20App%20Architecture.png "WebSocket App Architecture") ![SignalR App Architecture](https://github.com/sharship/WebSockets-SignalR/blob/main/imgs/SignalR.jpg "SignalR App Architecture")  
+
+### SignalR Hub
+The central concept of SignalR is "Hub", this Hub API enables you to call methods on connected _clients_ from the _server_.  
+**On Server side**, methods are defined to be called by **client**;  
+**On Client side**, methods are defined to be called by **server**;  
+
+
+### Phase 1: Build Server \(SignalR Server Hub\)
+Hub does the major work of:  
+- _Manage_ connections;  
+- _Receive_ messages \(from client\);  
+- _Send_ and _Route_ messages \(to clients\);  
+
+#### Send messages from Hub \(Server\): 
+- Use the _SendAsync_ method of our server and pass in the name of _client method_ as a parameter, e.g.  
+`Clients.Client(Context.ConnectionId).SendAsync("ReceiveConnID", Context.ConnectionId);`  
+- On client side, we need JavaScript methods/fuctions of **the same name\(plain string in this project\)** specified in _SendAsync\(\)_ method;  
+
+#### Startup Class
+Set up request pipeline and request delegates.  
+
